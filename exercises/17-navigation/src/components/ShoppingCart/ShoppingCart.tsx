@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./ShoppingCart.css";
 // Import something
-
+import { useParams } from "react-router-dom";
 function ShoppingCart() {
   /**
    * Add something here

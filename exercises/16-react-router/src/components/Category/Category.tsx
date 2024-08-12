@@ -26,7 +26,11 @@ function Category() {
    */
 
   if (!categoryId || !inventory[categoryId]){
-
+return(
+  <div>
+    <h2>CATEGORY NOT FOUND</h2>
+  </div>
+);
   }
   /**
    * All the products in a category. To see how this works, take a look at
