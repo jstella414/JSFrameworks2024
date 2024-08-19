@@ -17,6 +17,10 @@ function App() {
   /**
    * Complete all the logging in and logout logic
    */
+  const handleSubmit =(e: FormEvent)=>{
+    e.preventdefault();
+
+  }
 
   /**
    * If the user is logged in, you should render the <Home /> component instead.
@@ -37,6 +41,7 @@ function App() {
             type="text"
             id="username"
             placeholder="Username"
+            onSubmit={handleSubmit}
             className="form-control mr-3"
             required={true}
             value={username}
