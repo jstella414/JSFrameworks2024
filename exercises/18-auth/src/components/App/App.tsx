@@ -1,6 +1,8 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import Home from "../Home/Home";
 // import something here
 // import Axios (or use Fetch)
+import axios from "axios";
 
 function App() {
   /**
@@ -14,13 +16,43 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [token, setToken] = useState("");
+  const logout = ()=>setToken("");
   /**
    * Complete all the logging in and logout logic
    */
-  const handleSubmit =(e: FormEvent)=>{
-    e.preventdefault();
+  const handleSubmit = async (e: FormEvent)=>{
+    e.preventDefault();
+    console.log("hello");
+    setErrorMessage("");
+    try {
+      const { data } = await axios.post(
+        // If you don't proxy the URL, you would have to use
+        // http://localhost:3000/api/login
+        "/api/login",
+        {
+          username,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      // This is how you get the access token
+      setToken(data.token);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        setErrorMessage("Your username or password is not correct");
+        // Incorrect username or password
+      }
+    }
+  };
 
-  }
+if(token){
+  return <Home token = {token} logout={logout} />
+}
 
   /**
    * If the user is logged in, you should render the <Home /> component instead.
@@ -32,6 +64,7 @@ function App() {
       <form
         className="row row-cols-lg-auto g-3 align-items-center"
         method="POST"
+        onSubmit={handleSubmit}
       >
         <div className="col">
           <label htmlFor="username" className="visually-hidden">

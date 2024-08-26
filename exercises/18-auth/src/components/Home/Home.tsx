@@ -1,7 +1,8 @@
 // You might need to import something from React
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IMovie } from "../../types/movies";
 // import Axios (or use Fetch)
+import axios from "axios";
 
 type HomeProps = {
   token: string;
@@ -17,12 +18,25 @@ function Home({ token, logout }: HomeProps) {
    * Be sure to provide the token in the AJAX request.
    */
 
+  const getMovies = async()=>{
+    const { data } = await axios.get("http://localhost:3000/api/movies",{
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
+    });
+    setMovies(data);
+  };
+useEffect(()=>{
+  getMovies();
+},[]);
+
+
   return (
     <div className="container mt-2 mb-5">
       <div className="d-flex justify-content-between">
         <h1 className="h2">You are logged in!</h1>
         {/* Make this button functional */}
-        <button className="btn btn-primary">Logout</button>
+        <button onClick={logout} className="btn btn-primary">Logout</button>
       </div>
       {movies.map((movie, idx) => {
         return (
