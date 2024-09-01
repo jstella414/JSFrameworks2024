@@ -1,11 +1,26 @@
 import "./App.css";
+
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 // import Axios (or use Fetch)
 // import something else here
 
 function App() {
+
+  const fetchCharacter = async () => {
+    const { data } = await axios.get('https://rickandmortyapi.com/api/character');
+    return data.results;
+  };
+  
   /**
    * Set up Tanstack Query here
    */
+
+  const { data : characters = [], isPending, isError, error } = useQuery({
+    queryKey: ['character'],
+    queryFn: fetchCharacter,
+  });
+
 
   return (
     <div className="container">
@@ -24,11 +39,12 @@ function App() {
             {/* Handle event here */}
             <select id="dropdown" type="text">
               <option></option>
-              {/**
-               * Loop through all characters. The value should be the character id.
-               * @example in HTML
-               * <option value="2" key="character-1">Morty Smith</option>
-               */}
+              {characters.map((name) => {
+          return(
+              <option value={name.id} key={`character-${name.id}}`}>{name.name}</option>
+        )
+          
+          })}
             </select>
           </div>
         </div>

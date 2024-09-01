@@ -1,6 +1,5 @@
 import "./App.css";
 import AccordionSection from "./components/AccordionSection/AccordionSection";
-
 function App() {
   return (
     <div className="ui styled accordion">

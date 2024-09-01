@@ -12,13 +12,12 @@ const Person = () => {
    */
 
 
-  {
-    calculateAge = ()=>{
+  
+    const calculateAge = (birthYear) =>{
     const currentYear = new Date(Date.now()).getFullYear();
     return currentYear - person.birthYear;
-
-    }
   }
+
 
   return (
     <div>

@@ -12,40 +12,42 @@ import { phones } from "./images/phones";
 import "./App.css";
 
 
-
-
 function App() {
 
-const moveImage  = (image, index) =>{
-
-  if()
-  console.log(image)
-}
+// const moveImage  = (image, index) =>{
+//   console.log(image)
+// }
 
   return (
     <div className="App">
       {technologies.map((image, index) => (
-        <div>
-          <img src={image} key={`technology-${index}`} />
-          <button
+          <img style={{maxWidth: "400px"}} src={image} key={`technology-${index}`} />
+        ))}
+          {/* {<button
                       type="button"
                       className="button button-left"
                       title="Move left"
                       onClick={() => moveImage(image, index)}
 
                     >
-                      MOVE</button>
-
-        </div>
-      
+                      MOVE</button>} */}
+        
 
 
-      ))}
       {Object.values(phones).map((image, index) => (
-        <img src={image} key={`phone-${index}`} />
+        <img style={{maxWidth: "400px"}} src={image} key={`phone-${index}`} />
       ))}
     </div>
   );
 }
 
 export default App;
+
+  {/* <button
+                      type="button"
+                      className="button button-left"
+                      title="Move left"
+                      onClick={() => moveImage(image, index)}
+
+                    >
+                      MOVE</button> */}

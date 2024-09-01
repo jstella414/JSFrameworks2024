@@ -11,7 +11,7 @@ function LessText({ text = "", maxLength }){
         <button 
          type="button"
          className="btn btn-dark"
-        onClick = {()=>setHidden(true)} 
+        onClick = {()=> setHidden(false)} 
         >
             Read more
         </button>
@@ -19,7 +19,7 @@ function LessText({ text = "", maxLength }){
         <button
           type="button"
           className="btn btn-dark"
-          onClick={() => setHidden(false)}
+          onClick={() => setHidden(true)}
         >
           Read Less
         </button>
@@ -29,4 +29,4 @@ function LessText({ text = "", maxLength }){
     )
 
 }
-export default LessText
+export default LessText;

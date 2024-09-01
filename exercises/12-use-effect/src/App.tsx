@@ -10,13 +10,13 @@ function App() {
   /**
    * Set up your state
    */
-  const [quote, setQuote] = useState([]);
+  const [quote, setQuote] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   /**
    * Make an AJAX call with the useEffect hook
    */
-
+  type QuoteResponse = string[];
 
   const fetchQuotes = async () => {
     // 1. Show loading symbol
@@ -24,9 +24,9 @@ function App() {
 
     try {
       // 2. Make AJAX request
-      const quotes = await axios.get<string[]>("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+      const { data }  = await axios.get<QuoteResponse>("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
       // 3. Display results
-      setQuote(quotes.data[0]);
+      setQuote(data[0]);
       setIsLoading(false)
     } catch (err) {
       // Or 3. Handle error if there is an error

@@ -1,11 +1,9 @@
-import React from "react"
+type WelcomeProps = {
+  name?: string,
+};
 
-interface WelcomeProps{
-  name?:string;
-}
-
-const Welcome:React.FC<WelcomeProps> = ( {name = "user"}) => {
-    return <div>hello {name}</div>;
+function Welcome({ name = "user" }: WelcomeProps){
+    return <p>hello {name}</p>;
   };
 
 export default Welcome;
